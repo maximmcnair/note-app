@@ -19,12 +19,29 @@ import Store from './state/store'
 const store = Store({})
 console.log('initial store', store.getState())
 
-persistStore(store, {
-  storage: localForage,
-})
+// if (process.env.NODE_ENV === 'development') localForage.clear()
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      rehydrated: false,
+    }
+  }
+
+  componentDidMount() {
+    // begin periodically persisting the store
+    persistStore(store, {
+      storage: localForage,
+    }, () => {
+      this.setState({ rehydrated: true })
+    })
+  }
+
   render() {
+    if (!this.state.rehydrated) return <div />
+
     return (
       <Provider store={store}>
         <BrowserRouter>

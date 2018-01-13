@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 // components
@@ -19,6 +19,7 @@ export class List extends Component {
           )}
         </ul>
         <Link to="/create" className="btn">Create Note</Link>
+        { !notes.length && <Redirect to="/create" /> }
       </div>
     )
   }

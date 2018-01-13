@@ -5,7 +5,7 @@ export default function NotePreview({note}) {
 
   return (
     <li className="notepreview">
-      <h3>{title}</h3>
+      <h3>{note.id} - {title}</h3>
       <p>{body}</p>
     </li>
   )

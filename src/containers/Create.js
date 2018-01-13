@@ -48,7 +48,7 @@ export class Create extends Component {
           handleBodyChange={this.handleBodyChange}
         />
         <span onClick={this.createNote} className="btn">Create Note</span>
-        <Link to="/" className="small">Cancel</Link>
+        { this.props.notes.length > 0 && <Link to="/" className="small">Cancel</Link> }
         { isCreated && <Redirect to="/" /> }
       </div>
     )
@@ -56,7 +56,9 @@ export class Create extends Component {
 }
 
 function select(state) {
-  return {}
+  return {
+    notes: state.notes,
+  }
 }
 
 export default connect(select)(Create)

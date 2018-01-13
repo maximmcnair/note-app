@@ -7,6 +7,11 @@ import Note from '../components/Note'
 
 export class View extends Component {
   render () {
+    console.log(
+      this.props.match.params.id,
+      this.props.notes
+    )
+
     const note = this.props.notes.find(note => {
       return note.id === this.props.match.params.id
     })
