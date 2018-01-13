@@ -3,7 +3,7 @@ import { List } from 'immutable'
 
 import * as ImmutableCollection from '../lib/ImmutableCollection'
 
-describe('initialSate()', () => {
+describe.skip('initialSate()', () => {
   it('should return empty List', () => {
     expect(ImmutableCollection.initialSate()).toEqual(List([]))
   })

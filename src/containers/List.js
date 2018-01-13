@@ -1,16 +1,32 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 
-export default class List extends Component {
+// components
+import NotePreview from '../components/NotePreview'
+
+export class List extends Component {
   render () {
+    const {notes} = this.props
+
     return (
       <div>
-        <h1>List</h1>
         <ul>
-          <li><Link to="/note/2">Go to note 2</Link></li>
-          <li><Link to="/note/3">Go to note 3</Link></li>
+          {notes.map(note =>
+            <Link to={`/note/${note.id}`} key={note.id}>
+              <NotePreview note={note} />
+            </Link>
+          )}
         </ul>
       </div>
     )
   }
 }
+
+function select(state) {
+  return {
+    notes: state.notes,
+  }
+}
+
+export default connect(select)(List)
