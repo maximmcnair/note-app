@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {BrowserRouter, Route} from 'react-router-dom'
 import {Provider} from 'react-redux'
+import localForage from 'localforage'
+import {persistStore} from 'redux-persist'
 
 // Views
 import List from './containers/List'
@@ -16,6 +18,10 @@ import Store from './state/store'
 // init redux store
 const store = Store({})
 console.log('initial store', store.getState())
+
+persistStore(store, {
+  storage: localForage,
+})
 
 class App extends Component {
   render() {
