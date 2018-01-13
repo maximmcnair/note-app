@@ -19,3 +19,15 @@ it('should render notes', () => {
 
   expect(wrapper.find('ul').children().length).toEqual(2)
 })
+
+
+it('should render link to /create', () => {
+  // NOTE have to use mount when using MemoryRouter
+  const wrapper = mount(
+    <MemoryRouter>
+      <List notes={MockNotes} />
+    </MemoryRouter>
+  )
+
+  expect(wrapper.find('a').contains('Create Note')).toEqual(true)
+})

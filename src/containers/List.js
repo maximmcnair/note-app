@@ -18,6 +18,7 @@ export class List extends Component {
             </Link>
           )}
         </ul>
+        <Link to="/create">Create Note</Link>
       </div>
     )
   }
