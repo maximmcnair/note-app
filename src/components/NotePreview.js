@@ -4,7 +4,7 @@ export default function NotePreview({note}) {
   const {title, body} = note
 
   return (
-    <li>
+    <li className="notepreview">
       <h3>{title}</h3>
       <p>{body}</p>
     </li>

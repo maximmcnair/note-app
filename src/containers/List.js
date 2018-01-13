@@ -11,14 +11,14 @@ export class List extends Component {
 
     return (
       <div>
-        <ul>
+        <ul className="notepreviews">
           {notes.map(note =>
             <Link to={`/note/${note.id}`} key={note.id}>
               <NotePreview note={note} />
             </Link>
           )}
         </ul>
-        <Link to="/create">Create Note</Link>
+        <Link to="/create" className="btn">Create Note</Link>
       </div>
     )
   }

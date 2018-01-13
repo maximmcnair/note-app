@@ -22,7 +22,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <BrowserRouter>
-          <div>
+          <div className="app">
             <Route path="/" component={List} exact />
             <Route path="/note/:id" component={View} exact />
             <Route path="/create" component={Create} exact />
