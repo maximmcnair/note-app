@@ -20,6 +20,7 @@ export class Create extends Component {
     this.handleTitleChange = this.handleTitleChange.bind(this)
     this.handleBodyChange = this.handleBodyChange.bind(this)
     this.createNote = this.createNote.bind(this)
+    this.validData = this.validData.bind(this)
   }
 
   handleTitleChange(title) {
@@ -30,15 +31,20 @@ export class Create extends Component {
     this.setState({body})
   }
 
-  createNote () {
+  validData() {
+    const {title, body} = this.state
+    return title !== '' || body !== ''
+  }
+
+  createNote() {
+    if (!this.validData()) return
     const {title, body} = this.state
     this.props.dispatch(createNote({title, body}))
     this.setState({isCreated: true})
   }
 
-  render () {
+  render() {
     const {title, body, isCreated} = this.state
-
     return (
       <div>
         <CreateForm
@@ -47,7 +53,7 @@ export class Create extends Component {
           bodyValue={body}
           handleBodyChange={this.handleBodyChange}
         />
-        <span onClick={this.createNote} className="btn">Create Note</span>
+        <a onClick={this.createNote} className={this.validData() ? 'btn' : 'btn btn--disabled'}>Create Note</a>
         { this.props.notes.length > 0 && <Link to="/" className="small">Cancel</Link> }
         { isCreated && <Redirect to="/" /> }
       </div>

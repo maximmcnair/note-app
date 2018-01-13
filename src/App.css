@@ -54,7 +54,13 @@ small,
   color: #FDFEFE;
   font-size: 12px;
   font-weight: 600;
-  margin-right: 10px; }
+  cursor: pointer;
+  margin-right: 10px;
+  opacity: 1; }
+
+.btn--disabled {
+  opacity: 0.6;
+  cursor: default; }
 
 .notepreviews {
   list-style-type: none;
