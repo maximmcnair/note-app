@@ -1,13 +1,29 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-export default class View extends Component {
+// components
+import Note from '../components/Note'
+
+export class View extends Component {
   render () {
+    const note = this.props.notes.find(note => {
+      return note.id === this.props.match.params.id
+    })
+
     return (
       <div>
-        <h1>View</h1>
-        <Link to="/">Go back to notes</Link>
+        { note && <Note note={note} /> }
+        <Link to="/" className="btn">Close</Link>
       </div>
     )
   }
 }
+
+function select(state) {
+  return {
+    notes: state.notes,
+  }
+}
+
+export default connect(select)(View)
