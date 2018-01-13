@@ -5,6 +5,7 @@ import {Provider} from 'react-redux'
 // Views
 import List from './containers/List'
 import View from './containers/View'
+import Create from './containers/Create'
 
 // Base styling
 import './App.css'
@@ -24,6 +25,7 @@ class App extends Component {
           <div>
             <Route path="/" component={List} exact />
             <Route path="/note/:id" component={View} exact />
+            <Route path="/create" component={Create} exact />
           </div>
         </BrowserRouter>
       </Provider>

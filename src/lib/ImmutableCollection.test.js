@@ -10,25 +10,14 @@ describe.skip('initialSate()', () => {
 })
 
 describe('create()', () => {
-  it('should add document in list if id is array in list', () => {
+  it('should add document with a unique id', () => {
     const list = List([
-      {id: '123', title: 'text'}
+      {id: 1, title: 'text'}
     ])
-    const newItem = {id: '234', title: 'Some other text'}
+    const newItem = {title: 'Some other text'}
 
     expect(ImmutableCollection.create(list, newItem)).toEqual(
-      List([{id: '234', title: 'Some other text'}, {id: '123', title: 'text'}])
-    )
-  })
-
-  it('should NOT add document if id is array in list', () => {
-    const list = List([
-      {id: '123', title: 'text'}
-    ])
-    const newItem = {id: '123', title: 'Some other text'}
-
-    expect(ImmutableCollection.create(list, newItem)).toEqual(
-      List([{id: '123', title: 'text'}])
+      List([{id: 2, title: 'Some other text'}, {id: 1, title: 'text'}])
     )
   })
 })
@@ -36,23 +25,23 @@ describe('create()', () => {
 describe('update()', () => {
   it('should update document if id is array in list', () => {
     const list = List([
-      {id: '123', title: 'current text'}
+      {id: 1, title: 'current text'}
     ])
-    const updatedItem = {id: '123', title: 'new text'}
+    const updatedItem = {id: 1, title: 'new text'}
 
     expect(ImmutableCollection.update(list, updatedItem)).toEqual(
-      List([{id: '123', title: 'new text'}])
+      List([{id: 1, title: 'new text'}])
     )
   })
 
   it('should return list if document is not found', () => {
     const list = List([
-      {id: '123', title: 'hello'}
+      {id: 1, title: 'hello'}
     ])
-    const newItem = {id: '13223', title: 'Some other text'}
+    const newItem = {id: 4, title: 'Some other text'}
 
     expect(ImmutableCollection.update(list, newItem)).toEqual(
-      List([{id: '123', title: 'hello'}])
+      List([{id: 1, title: 'hello'}])
     )
   })
 })
@@ -60,9 +49,9 @@ describe('update()', () => {
 describe('remove()', () => {
   it('should remove document', () => {
     const list = List([
-      {id: '123', title: 'current text'}
+      {id: 1, title: 'current text'}
     ])
-    const itemToRemove = {id: '123'}
+    const itemToRemove = {id: 1}
 
     expect(ImmutableCollection.remove(list, itemToRemove)).toEqual(
       List([])
@@ -71,12 +60,12 @@ describe('remove()', () => {
 
   it('should return list if document is not found', () => {
     const list = List([
-      {id: '123', title: 'hello'}
+      {id: 1, title: 'hello'}
     ])
-    const itemToRemove = {id: '13223', title: 'Some other text'}
+    const itemToRemove = {id: 4, title: 'Some other text'}
 
     expect(ImmutableCollection.remove(list, itemToRemove)).toEqual(
-      List([{id: '123', title: 'hello'}])
+      List([{id: 1, title: 'hello'}])
     )
   })
 })

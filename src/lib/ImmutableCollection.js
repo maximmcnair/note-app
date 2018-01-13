@@ -19,15 +19,9 @@ export function initialSate() {
  * @returns {Immutable.List} Updated List
  */
 export function create(list, document) {
-  var index = list.findIndex((item) => {
-    return item.id === document.id
-  })
-
-  if (index !== -1) {
-    return list
-  } else {
-    return list.unshift(document)
-  }
+  return list.unshift(Object.assign({}, document, {
+    id: list.size + 1
+  }))
 }
 
 /**
