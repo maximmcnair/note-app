@@ -47,8 +47,8 @@ export class Create extends Component {
           bodyValue={body}
           handleBodyChange={this.handleBodyChange}
         />
-        <span onClick={this.createNote}>Create Note</span>
-        <Link to="/">Go back to notes</Link>
+        <span onClick={this.createNote} className="btn">Create Note</span>
+        <Link to="/" className="small">Cancel</Link>
         { isCreated && <Redirect to="/" /> }
       </div>
     )
